@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import ProtectedRoute from './components/ProtectedRoute'
 import { isSupabaseConfigured } from './lib/supabase'
 import Home from './pages/Home'
@@ -22,7 +23,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className="shell">
       <Navbar />
       <main>
         <Routes>
@@ -34,7 +35,7 @@ export default function App() {
           <Route path="*" element={<p className="center muted">페이지를 찾을 수 없습니다.</p>} />
         </Routes>
       </main>
-      <footer>© 2026 제주 이미지 찾기</footer>
-    </>
+      <Footer />
+    </div>
   )
 }

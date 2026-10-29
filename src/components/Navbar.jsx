@@ -12,19 +12,21 @@ export default function Navbar() {
 
   return (
     <header className="nav">
-      <Link to="/" className="brand">🍊 제주 이미지 찾기</Link>
-      <nav>
-        <NavLink to="/">홈</NavLink>
+      <nav className="pill-group">
+        <NavLink to="/" end>홈</NavLink>
         <NavLink to="/search">이미지 찾기</NavLink>
+        {user && <NavLink to="/profile">내 정보</NavLink>}
+      </nav>
+
+      <Link to="/" className="brand"><i /> 제주 이미지 찾기</Link>
+
+      <nav className="pill-group">
         {user ? (
-          <>
-            <NavLink to="/profile">내 정보</NavLink>
-            <button className="btn ghost" onClick={handleSignOut}>로그아웃</button>
-          </>
+          <button onClick={handleSignOut}>로그아웃</button>
         ) : (
           <>
             <NavLink to="/login">로그인</NavLink>
-            <Link to="/signup" className="btn">회원가입</Link>
+            <Link to="/signup" className="solid">회원가입</Link>
           </>
         )}
       </nav>

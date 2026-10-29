@@ -54,24 +54,24 @@ export default function Search() {
   const name = user?.user_metadata?.nickname || user?.email
 
   return (
-    <section>
-      <h2>제주 이미지 찾기</h2>
-      <p className="muted">{name}님, 찾고 싶은 제주의 풍경을 검색해 보세요.</p>
-
-      <form className="searchbar" onSubmit={handleSubmit}>
-        <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="예: 한라산, 해녀, 협재해변" />
-        <button className="btn">검색</button>
-      </form>
-
-      <div className="chips">
-        {jejuKeywords.map((k) => (
-          <button key={k} className={`chip ${k === q ? 'on' : ''}`} onClick={() => setParams({ q: k })}>
-            {k}
-          </button>
-        ))}
+    <section className="search">
+      <div className="search-head">
+        <span className="eyebrow">✳ {name}님의 이미지 찾기</span>
+        <h2>어떤 제주를<br />찾고 계세요?</h2>
+        <form className="hero-form" onSubmit={handleSubmit}>
+          <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="예: 한라산, 해녀, 협재해변" />
+          <button className="btn">검색 <span aria-hidden>→</span></button>
+        </form>
+        <div className="chips">
+          {jejuKeywords.map((k) => (
+            <button key={k} className={`chip ${k === q ? 'on' : ''}`} onClick={() => setParams({ q: k })}>
+              {k}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error center">{error}</p>}
       {!error && !loading && images.length === 0 && <p className="muted center">검색 결과가 없습니다.</p>}
 
       <div className="photos">
@@ -90,12 +90,8 @@ export default function Search() {
 
       {loading && <p className="center muted">불러오는 중…</p>}
       {!loading && images.length > 0 && images.length < total && page < 20 && (
-        <div className="center"><button className="btn ghost" onClick={loadMore}>더 보기</button></div>
+        <div className="row-center"><button className="btn ghost" onClick={loadMore}>더 보기</button></div>
       )}
-
-      <p className="muted center small">
-        이미지 제공: <a href="https://pixabay.com" target="_blank" rel="noreferrer">Pixabay</a>
-      </p>
     </section>
   )
 }

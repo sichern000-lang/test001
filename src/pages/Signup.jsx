@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Signup() {
   const { user, signUp } = useAuth()
+  const location = useLocation()
 
   const [nickname, setNickname] = useState('')
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(location.state?.email || '')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [done, setDone] = useState(false)
