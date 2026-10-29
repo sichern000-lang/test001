@@ -1,4 +1,5 @@
 import { useAuth } from '../context/AuthContext'
+import { displayName } from '../lib/user'
 
 export default function Profile() {
   const { user } = useAuth()
@@ -8,7 +9,7 @@ export default function Profile() {
       <h2>내 정보</h2>
       <dl>
         <dt>닉네임</dt>
-        <dd>{user.user_metadata?.nickname || '-'}</dd>
+        <dd>{displayName(user) || '-'}</dd>
         <dt>이메일</dt>
         <dd>{user.email}</dd>
         <dt>가입일</dt>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import OAuthButtons from '../components/OAuthButtons'
 
 export default function Login() {
   const { user, signIn } = useAuth()
@@ -47,6 +48,7 @@ export default function Login() {
       </label>
       {error && <p className="error">{error}</p>}
       <button className="btn big" disabled={busy}>{busy ? '로그인 중…' : '로그인'}</button>
+      <OAuthButtons />
       <p className="muted">계정이 없으신가요? <Link to="/signup">회원가입</Link></p>
     </form>
   )

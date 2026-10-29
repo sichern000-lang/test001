@@ -36,6 +36,15 @@ export function AuthProvider({ children }) {
       }),
     signIn: (email, password) =>
       supabase.auth.signInWithPassword({ email, password }),
+    signInWithProvider: (provider) =>
+      supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/search`,
+          // 카카오는 이메일 권한이 비즈 앱 전용이라 닉네임/프로필만 요청
+          ...(provider === 'kakao' && { scopes: 'profile_nickname profile_image' }),
+        },
+      }),
     signOut: () => supabase.auth.signOut(),
   }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import OAuthButtons from '../components/OAuthButtons'
 
 export default function Signup() {
   const { user, signUp } = useAuth()
@@ -60,6 +61,7 @@ export default function Signup() {
       </label>
       {error && <p className="error">{error}</p>}
       <button className="btn big" disabled={busy}>{busy ? '가입 중…' : '가입하기'}</button>
+      <OAuthButtons />
       <p className="muted">이미 계정이 있으신가요? <Link to="/login">로그인</Link></p>
     </form>
   )

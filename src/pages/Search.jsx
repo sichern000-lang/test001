@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { displayName } from '../lib/user'
 import { jejuKeywords } from '../data/keywords'
 
 export default function Search() {
@@ -51,7 +52,7 @@ export default function Search() {
     load(q, next, false)
   }
 
-  const name = user?.user_metadata?.nickname || user?.email
+  const name = displayName(user)
 
   return (
     <section className="search">
