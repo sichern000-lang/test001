@@ -5,7 +5,7 @@ import { isSupabaseConfigured } from './lib/supabase'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Gallery from './pages/Gallery'
+import Search from './pages/Search'
 import Profile from './pages/Profile'
 
 export default function App() {
@@ -29,12 +29,12 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/gallery" element={<ProtectedRoute><Gallery /></ProtectedRoute>} />
+          <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="*" element={<p className="center muted">페이지를 찾을 수 없습니다.</p>} />
         </Routes>
       </main>
-      <footer>© 2026 제주 IP 라운지</footer>
+      <footer>© 2026 제주 이미지 찾기</footer>
     </>
   )
 }

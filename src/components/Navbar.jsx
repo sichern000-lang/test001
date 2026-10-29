@@ -12,10 +12,10 @@ export default function Navbar() {
 
   return (
     <header className="nav">
-      <Link to="/" className="brand">🍊 제주 IP 라운지</Link>
+      <Link to="/" className="brand">🍊 제주 이미지 찾기</Link>
       <nav>
         <NavLink to="/">홈</NavLink>
-        <NavLink to="/gallery">IP 갤러리</NavLink>
+        <NavLink to="/search">이미지 찾기</NavLink>
         {user ? (
           <>
             <NavLink to="/profile">내 정보</NavLink>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { jejuIps } from '../data/jejuIp'
+import { jejuKeywords } from '../data/keywords'
 
 export default function Home() {
   const { user } = useAuth()
@@ -8,27 +8,23 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <h1>제주의 이야기를<br />IP로 만나는 곳</h1>
-        <p>돌하르방, 해녀, 감귤, 한라산… 제주를 대표하는 문화 IP를 모아 보고 아이디어를 나눠 보세요.</p>
+        <h1>제주의 풍경을<br />사진으로 찾아보세요</h1>
+        <p>한라산, 바다, 오름, 돌하르방… 키워드 하나로 제주 이미지를 검색하고 원본을 바로 열어 볼 수 있어요.</p>
         {user ? (
-          <Link className="btn big" to="/gallery">IP 갤러리 보기</Link>
+          <Link className="btn big" to="/search">이미지 찾기</Link>
         ) : (
           <Link className="btn big" to="/signup">무료로 시작하기</Link>
         )}
       </section>
 
       <section>
-        <h2>미리보기</h2>
-        <div className="grid">
-          {jejuIps.slice(0, 3).map((ip) => (
-            <article className="card" key={ip.id}>
-              <div className="emoji">{ip.emoji}</div>
-              <h3>{ip.name}</h3>
-              <span className="tag">{ip.tag}</span>
-            </article>
+        <h2>인기 키워드</h2>
+        <div className="chips">
+          {jejuKeywords.map((k) => (
+            <Link key={k} className="chip" to={`/search?q=${encodeURIComponent(k)}`}>{k}</Link>
           ))}
         </div>
-        <p className="muted center">전체 IP 목록과 상세 설명은 회원에게만 공개됩니다.</p>
+        <p className="muted center">이미지 검색은 로그인한 회원만 이용할 수 있습니다.</p>
       </section>
     </>
   )

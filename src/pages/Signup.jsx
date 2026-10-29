@@ -12,7 +12,7 @@ export default function Signup() {
   const [done, setDone] = useState(false)
   const [busy, setBusy] = useState(false)
 
-  if (user) return <Navigate to="/gallery" replace />
+  if (user) return <Navigate to="/search" replace />
 
   async function handleSubmit(e) {
     e.preventDefault()

@@ -6,7 +6,7 @@ export default function Login() {
   const { user, signIn } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const redirectTo = location.state?.from || '/gallery'
+  const redirectTo = location.state?.from || '/search'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
