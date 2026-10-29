@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useCart } from '../context/CartContext'
 import { displayName } from '../lib/user'
 import { jejuKeywords } from '../data/keywords'
 
 export default function Search() {
   const { user } = useAuth()
+  const { has, toggle, error: cartError } = useCart()
   const [params, setParams] = useSearchParams()
   const q = params.get('q') || '제주도'
 
@@ -73,6 +75,7 @@ export default function Search() {
       </div>
 
       {error && <p className="error center">{error}</p>}
+      {cartError && <p className="error center">{cartError}</p>}
       {!error && !loading && images.length === 0 && <p className="muted center">검색 결과가 없습니다.</p>}
 
       <div className="photos">
@@ -81,6 +84,13 @@ export default function Search() {
             <a href={img.large} target="_blank" rel="noreferrer">
               <img src={img.thumb} alt={img.tags} loading="lazy" />
             </a>
+            <button
+              className={`add-btn ${has(img.id) ? 'in' : ''}`}
+              onClick={() => toggle(img)}
+              aria-label={has(img.id) ? '장바구니에서 빼기' : '장바구니에 담기'}
+            >
+              {has(img.id) ? '담김 ✓' : '+ 담기 0원'}
+            </button>
             <figcaption>
               <span>{img.tags}</span>
               <a href={img.page} target="_blank" rel="noreferrer">by {img.user}</a>

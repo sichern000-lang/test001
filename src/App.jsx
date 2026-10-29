@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import CartModal from './components/CartModal'
 import ProtectedRoute from './components/ProtectedRoute'
 import { isSupabaseConfigured } from './lib/supabase'
 import Home from './pages/Home'
@@ -36,6 +37,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <CartModal />
     </div>
   )
 }
